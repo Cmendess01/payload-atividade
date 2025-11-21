@@ -40,8 +40,8 @@ const SettingsPage = () => {
             title: 'Geral',
             icon: '⚙️',
             items: [
-                { label: 'Perfil', description: 'Editar informações pessoais', link: `/admin/collections/users/${user?.id}` },
-                { label: 'Segurança', description: 'Alterar senha e configurações de segurança', link: `/admin/collections/users/${user?.id}` },
+                { label: 'Perfil', description: 'Editar informações pessoais', link: `/users/${user?.id}` },
+                { label: 'Segurança', description: 'Alterar senha e configurações de segurança', link: `/users/${user?.id}` },
             ],
         },
         {
@@ -97,7 +97,7 @@ const SettingsPage = () => {
                     </ProfileRole>
                 </ProfileInfo>
                 <ProfileAction
-                    onClick={() => router.push(`/admin/collections/users/${user?.id}`)}
+                    onClick={() => router.push(`/users/${user?.id}`)}
                 >
                     ✏️ Editar Perfil
                 </ProfileAction>

@@ -115,7 +115,7 @@ const PostsPage = () => {
                         </FilterButton>
                     </FilterButtons>
 
-                    <CreateButton onClick={() => router.push('/admin/collections/posts/create')}>
+                    <CreateButton onClick={() => router.push('/posts/create')}>
                         ➕ Novo Post
                     </CreateButton>
                 </ActionBar>
@@ -130,7 +130,7 @@ const PostsPage = () => {
                 <EmptyState>
                     <EmptyIcon>📝</EmptyIcon>
                     <EmptyText>Nenhum post encontrado</EmptyText>
-                    <EmptyButton onClick={() => router.push('/admin/collections/posts/create')}>
+                    <EmptyButton onClick={() => router.push('/posts/create')}>
                         Criar Primeiro Post
                     </EmptyButton>
                 </EmptyState>
@@ -163,7 +163,7 @@ const PostsPage = () => {
                                 <PostCardActions>
                                     <ActionButton
                                         color="#06b6d4"
-                                        onClick={() => router.push(`/admin/collections/posts/${post.id}`)}
+                                        onClick={() => router.push(`/posts/${post.id}`)}
                                     >
                                         ✏️ Editar
                                     </ActionButton>
