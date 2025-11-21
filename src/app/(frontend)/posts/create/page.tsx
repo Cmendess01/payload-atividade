@@ -47,7 +47,6 @@ const CreatePostPage = () => {
     });
     const [error, setError] = useState('');
 
-    // Verificar autenticação ao carregar
     useEffect(() => {
         checkAuth();
     }, []);
@@ -70,7 +69,6 @@ const CreatePostPage = () => {
             console.log('👤 Usuário:', data.user.email);
             console.log('🎭 Role:', data.user.role);
 
-            // Verificar role
             if (!['admin', 'writer'].includes(data.user.role)) {
                 alert(`❌ Sua role "${data.user.role}" não pode criar posts!\n\nApenas admin e writer podem criar posts.`);
                 router.push('/dashboard');
@@ -126,7 +124,7 @@ const CreatePostPage = () => {
                     },
                 },
                 status: formData.status,
-                author: user.id, // ✅ IMPORTANTE
+                author: user.id,
             };
 
             console.log('📤 Enviando:', postData);
@@ -232,7 +230,18 @@ const CreatePostPage = () => {
 
 export default CreatePostPage;
 
-// Styled Components (mantenha os que você já tem + adicione este)
+// ========== STYLED COMPONENTS ==========
+
+const Container = styled.div`
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e1b4b 0%, #3b0764 100%);
+    padding: 2rem;
+
+    @media (max-width: 768px) {
+        padding: 1rem;
+    }
+`;
+
 const LoadingText = styled.div`
     display: flex;
     justify-content: center;
