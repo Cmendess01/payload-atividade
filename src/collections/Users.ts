@@ -1,11 +1,6 @@
 import { CollectionConfig } from 'payload'
 
-// Extend the User type to include custom fields
-type UserWithRole = {
-  role?: 'admin' | 'writer' | 'user'
-  name?: string
-}
-
+// Export the Users collection configuration
 export const Users: CollectionConfig = {
   slug: 'users',
   auth: {

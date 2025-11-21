@@ -31,7 +31,8 @@
     "payload": "3.63.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "sharp": "0.34.2"
+    "sharp": "0.34.2",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
     "@playwright/test": "1.56.1",
@@ -40,6 +41,7 @@
     "@types/nodemailer": "^7.0.3",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
+    "@types/styled-components": "^5.1.35",
     "@vitejs/plugin-react": "4.5.2",
     "eslint": "^9.16.0",
     "eslint-config-next": "15.4.7",

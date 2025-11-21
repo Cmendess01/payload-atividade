@@ -186,7 +186,14 @@ export interface Post {
     };
     [k: string]: unknown;
   };
+  /**
+   * Definido automaticamente ao criar o post
+   */
   author: number | User;
+  /**
+   * Posts publicados são visíveis publicamente
+   */
+  status: 'draft' | 'published';
   tags?:
     | {
         tag?: string | null;
@@ -194,6 +201,9 @@ export interface Post {
       }[]
     | null;
   image?: (number | null) | Media;
+  /**
+   * Incrementado automaticamente a cada leitura
+   */
   views?: number | null;
   updatedAt: string;
   createdAt: string;
@@ -328,6 +338,7 @@ export interface PostsSelect<T extends boolean = true> {
   title?: T;
   content?: T;
   author?: T;
+  status?: T;
   tags?:
     | T
     | {
