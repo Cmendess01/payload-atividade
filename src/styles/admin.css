@@ -1,0 +1,203 @@
+/* ========== VARIÁVEIS ROXAS ========== */
+:root {
+    --color-primary: #8b5cf6;
+    --color-primary-dark: #7c3aed;
+    --color-primary-light: #a78bfa;
+    --color-bg-dark: #1e1b4b;
+    --color-bg-darker: #0f172a;
+    --color-bg-card: rgba(17, 24, 39, 0.5);
+}
+
+/* ========== BACKGROUND GERAL ========== */
+body {
+    background: linear-gradient(135deg, #1e1b4b 0%, #3b0764 100%) !important;
+    min-height: 100vh;
+}
+
+/* ========== PÁGINA DE LOGIN ========== */
+.template-default,
+.template-login {
+    background: linear-gradient(135deg, #1e1b4b 0%, #3b0764 100%) !important;
+}
+
+/* Card de Login */
+.login__form,
+.form-container {
+    background: rgba(17, 24, 39, 0.8) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(139, 92, 246, 0.3) !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    background: rgba(31, 41, 55, 0.9) !important;
+    border: 1px solid rgba(55, 65, 81, 1) !important;
+    color: #f3f4f6 !important;
+    border-radius: 0.5rem !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-primary-light) !important;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2) !important;
+}
+
+/* Botões Primários */
+.btn--style-primary,
+button[type="submit"],
+.form-submit button {
+    background: var(--color-primary) !important;
+    border: none !important;
+    color: white !important;
+    font-weight: 600 !important;
+    border-radius: 0.5rem !important;
+    transition: all 0.2s !important;
+}
+
+.btn--style-primary:hover,
+button[type="submit"]:hover {
+    background: var(--color-primary-dark) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Labels */
+label {
+    color: #f3f4f6 !important;
+    font-weight: 600 !important;
+}
+
+/* Links */
+a {
+    color: var(--color-primary-light) !important;
+}
+
+a:hover {
+    color: var(--color-primary) !important;
+}
+
+/* ========== PAINEL ADMIN ========== */
+.app {
+    background: linear-gradient(135deg, #1e1b4b 0%, #3b0764 100%) !important;
+}
+
+/* Sidebar */
+.nav {
+    background: rgba(17, 24, 39, 0.9) !important;
+    backdrop-filter: blur(10px) !important;
+    border-right: 1px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+/* Header/TopBar */
+.app-header {
+    background: rgba(17, 24, 39, 0.8) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+/* Cards/Containers */
+.card,
+.collection-list,
+.dashboard,
+.doc-controls {
+    background: rgba(17, 24, 39, 0.7) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(139, 92, 246, 0.2) !important;
+    border-radius: 0.75rem !important;
+}
+
+/* Tabelas */
+.table {
+    background: transparent !important;
+}
+
+.table th {
+    background: rgba(139, 92, 246, 0.2) !important;
+    color: #f3f4f6 !important;
+    border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+.table td {
+    color: #e5e7eb !important;
+    border-color: rgba(55, 65, 81, 0.5) !important;
+}
+
+.table tr:hover {
+    background: rgba(139, 92, 246, 0.1) !important;
+}
+
+/* Texto Geral */
+h1, h2, h3, h4, h5, h6,
+p, span, div {
+    color: #f3f4f6 !important;
+}
+
+/* Menu Items */
+.nav__link {
+    color: rgba(243, 244, 246, 0.8) !important;
+    border-radius: 0.5rem !important;
+    transition: all 0.2s !important;
+}
+
+.nav__link:hover,
+.nav__link--active {
+    background: rgba(139, 92, 246, 0.2) !important;
+    color: var(--color-primary-light) !important;
+}
+
+/* Badges/Status */
+.pill,
+.badge {
+    background: rgba(139, 92, 246, 0.3) !important;
+    border: 1px solid var(--color-primary-light) !important;
+    color: #f3f4f6 !important;
+}
+
+/* Rich Text Editor */
+.lexical-editor {
+    background: rgba(31, 41, 55, 0.9) !important;
+    border: 1px solid rgba(55, 65, 81, 1) !important;
+    border-radius: 0.5rem !important;
+}
+
+/* Modals */
+.popup,
+.modal {
+    background: rgba(17, 24, 39, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(139, 92, 246, 0.3) !important;
+    border-radius: 1rem !important;
+}
+
+/* Toast/Notifications */
+.toast {
+    background: rgba(17, 24, 39, 0.95) !important;
+    border: 1px solid rgba(139, 92, 246, 0.3) !important;
+    border-radius: 0.75rem !important;
+    color: #f3f4f6 !important;
+}
+
+/* Scrollbar Customizada */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(31, 41, 55, 0.5);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-dark);
+}

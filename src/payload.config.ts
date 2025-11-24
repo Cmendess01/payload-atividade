@@ -20,19 +20,32 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    
+    meta: {
+      titleSuffix: '- Sistema de Gerenciamento',
+    },
+    
+    
   },
+  
   collections: [Users, Media, Posts],
+  
   editor: lexicalEditor(),
+  
   secret: process.env.PAYLOAD_SECRET || '',
+  
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
+  
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
   }),
+  
   sharp,
+  
   email: nodemailerAdapter({
     defaultFromAddress: process.env.EMAIL_FROM || 'noreply@example.com',
     defaultFromName: 'Atividade Payload',
@@ -46,6 +59,7 @@ export default buildConfig({
       },
     },
   }),
+  
   plugins: [
     // storage-adapter-placeholder
   ],

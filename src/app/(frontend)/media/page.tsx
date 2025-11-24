@@ -83,20 +83,20 @@ const MediaPage = () => {
                 <ActionBar>
                     <ViewToggle>
                         <ViewButton
-                            active={viewMode === 'grid'}
+                            $active={viewMode === 'grid'}
                             onClick={() => setViewMode('grid')}
                         >
                             🔲 Grid
                         </ViewButton>
                         <ViewButton
-                            active={viewMode === 'list'}
+                            $active={viewMode === 'list'}
                             onClick={() => setViewMode('list')}
                         >
                             ☰ Lista
                         </ViewButton>
                     </ViewToggle>
 
-                    <UploadButton onClick={() => router.push('/admin/collections/media/create')}>
+                    <UploadButton onClick={() => router.push('/media/upload')}>
                         ⬆️ Upload
                     </UploadButton>
                 </ActionBar>
@@ -111,7 +111,7 @@ const MediaPage = () => {
                 <EmptyState>
                     <EmptyIcon>📁</EmptyIcon>
                     <EmptyText>Nenhuma mídia encontrada</EmptyText>
-                    <EmptyButton onClick={() => router.push('/admin/collections/media/create')}>
+                    <EmptyButton onClick={() => router.push('/media/upload')}>
                         Fazer Primeiro Upload
                     </EmptyButton>
                 </EmptyState>
@@ -289,14 +289,14 @@ const ViewToggle = styled.div`
     gap: 0.5rem;
 `;
 
-const ViewButton = styled.button<{ active: boolean }>`
+const ViewButton = styled.button<{ $active: boolean }>`
     background: ${(props) =>
-        props.active ? 'rgba(139, 92, 246, 0.3)' : 'rgba(17, 24, 39, 0.5)'};
+        props.$active ? 'rgba(139, 92, 246, 0.3)' : 'rgba(17, 24, 39, 0.5)'};
     border: 1px solid
         ${(props) =>
-            props.active ? 'rgba(167, 139, 250, 1)' : 'rgba(139, 92, 246, 0.2)'};
+            props.$active ? 'rgba(167, 139, 250, 1)' : 'rgba(139, 92, 246, 0.2)'};
     color: ${(props) =>
-        props.active ? 'rgba(167, 139, 250, 1)' : 'rgba(156, 163, 175, 1)'};
+        props.$active ? 'rgba(167, 139, 250, 1)' : 'rgba(156, 163, 175, 1)'};
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
     cursor: pointer;

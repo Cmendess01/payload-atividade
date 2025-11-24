@@ -25,7 +25,7 @@ const LoginPage = () => {
         e.preventDefault();
         setError(null);
 
-        // Validação simples dos campos
+        // validar os campos 
         if (!formData.email || !formData.password) {
             setError('Preencha todos os campos.');
             return;
@@ -52,7 +52,6 @@ const LoginPage = () => {
                 return;
             }
 
-            // Salvar preferência "Lembrar-me"
             if (formData.rememberMe) {
                 localStorage.setItem('rememberedEmail', formData.email);
             } else {
@@ -68,7 +67,7 @@ const LoginPage = () => {
         }
     }
 
-    // Carregar email salvo ao montar componente
+    // pra carregar email salvo ao montar componente
     useEffect(() => {
         const savedEmail = localStorage.getItem('rememberedEmail');
         if (savedEmail) {

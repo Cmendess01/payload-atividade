@@ -78,7 +78,7 @@ async function logout() {
             credentials: 'include',
         });
         document.cookie = 'payload-token=; Max-Age=0; path=/;';
-        window.location.href = '/admin/login';
+        window.location.href = '/login'; 
     } catch (error) {
         console.error('Erro ao fazer logout:', error);
     }
@@ -101,7 +101,7 @@ const DashboardPage = () => {
             setLoading(true);
             const currentUser = await getCurrentUser();
             if (!currentUser) {
-                router.push('/admin/login');
+                router.push('/login');  
                 return;
             }
             setUser(currentUser);
@@ -250,7 +250,7 @@ const DashboardPage = () => {
                             <EmptyState>
                                 <EmptyIcon>📝</EmptyIcon>
                                 <EmptyText>Nenhum post encontrado</EmptyText>
-                                <EmptyButton onClick={() => navigate('/admin/collections/posts/create')}>
+                                <EmptyButton onClick={() => navigate('/posts/create')}>
                                     Criar Primeiro Post
                                 </EmptyButton>
                             </EmptyState>
@@ -258,7 +258,7 @@ const DashboardPage = () => {
                             recentPosts.map((post) => (
                                 <PostItem
                                     key={post.id}
-                                    onClick={() => navigate(`/admin/collections/posts/${post.id}`)}
+                                    onClick={() => navigate(`/posts/${post.id}`)}
                                 >
                                     <PostInfo>
                                         <PostTitle>{post.title}</PostTitle>
@@ -281,14 +281,14 @@ const DashboardPage = () => {
                 <QuickActions>
                     <QuickActionButton
                         color="#8b5cf6"
-                        onClick={() => navigate('/admin/collections/posts/create')}
+                        onClick={() => navigate('/posts/create')}
                     >
                         <span className="icon">➕</span>
                         <span className="text">Novo Post</span>
                     </QuickActionButton>
                     <QuickActionButton
                         color="#06b6d4"
-                        onClick={() => navigate('/admin/collections/media/create')}
+                        onClick={() => navigate('/media/upload')}
                     >
                         <span className="icon">📤</span>
                         <span className="text">Upload</span>
@@ -314,9 +314,6 @@ const DashboardPage = () => {
 };
 
 export default DashboardPage;
-
-// Mantenha todos os Styled Components que você já tem
-// (Não preciso repetir aqui, são os mesmos)
 
 // Styled Components
 const Container = styled.div`

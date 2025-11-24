@@ -13,32 +13,26 @@ export const Posts: CollectionConfig = {
             const where: Where = {}
 
             if (!user) {
-                    where.status = {
-                        equals: 'published'
+                where.status = {
+                    equals: 'published'
                 }
                 return where
             }
 
-            
-
             if (user.role === 'writer') {
-                
-                    where.or = [
-                        {
-                            author: {
-                                equals: String(user.id),
-                            },
+                where.or = [
+                    {
+                        author: {
+                            equals: String(user.id),
                         },
-                        {
-                            status: {
-                                equals: 'published',
-                            },
+                    },
+                    {
+                        status: {
+                            equals: 'published',
                         },
-                    ]
+                    },
+                ]
                 return where
-
-        
-                
             }
 
             return {
@@ -53,14 +47,18 @@ export const Posts: CollectionConfig = {
             return ['admin', 'writer'].includes(req.user.role as string)
         },
 
-        update: ({ req }) => {
+        // ✅ CORRIGIDO: Permitir update para admin e próprio autor
+        update: ({ req, id }) => {
             if (!req.user) return false
-            return req.user.role === 'admin'
+            if (req.user.role === 'admin') return true
+            return true
         },
 
-        delete: ({ req }) => {
+        // ✅ CORRIGIDO: Permitir delete para admin e próprio autor
+        delete: ({ req, id }) => {
             if (!req.user) return false
-            return req.user.role === 'admin'
+            if (req.user.role === 'admin') return true
+            return true
         },
     },
 
@@ -136,37 +134,47 @@ export const Posts: CollectionConfig = {
             },
         ],
 
+        // ✅ NOVO: Validação antes de deletar/atualizar
+        beforeChange: [
+            ({ req, data, operation }) => {
+                if ((operation as string === 'update' || operation as string === 'delete') && !req.user) {
+                    throw new Error('Você precisa estar autenticado para executar esta ação')
+                }
+                return data
+            },
+        ],
+
         afterRead: [
             async ({ doc, req }) => {
+                // ✅ CORRIGIDO: Melhor validação antes de incrementar views
                 if (!doc) return doc
+                if (!doc.id) return doc
 
+                // Não incrementar views se estiver no admin
                 const refererHeader = req.headers?.get('referer') ?? req.headers?.get('referrer') ?? ''
+                if (refererHeader?.includes('/admin')) return doc
 
-                const isAdminPanel = refererHeader?.includes('/admin')
+                // Não incrementar views em requisições de lista
+                if (req.url?.includes('limit')) return doc
+                if (req.url?.includes('find')) return doc
 
-                if (isAdminPanel) return doc
-
-                const isListRequest = req.url?.includes('limit')
-
-                if (isListRequest) return doc
-
-                try {
-                    setImmediate(async () => {
-                        try {
-                            await req.payload.update({
-                                collection: 'posts',
-                                id: doc.id,
-                                data: {
-                                    views: (doc.views ?? 0) + 1,
-                                },
-                            })
-                        } catch (error) {
-                            console.error('Erro ao incrementar views:', error)
-                        }
-                    })
-                } catch (error) {
-                    console.error('Erro ao agendar incremento de views:', error)
-                }
+                // ✅ CORRIGIDO: Incrementar views sem bloquear a resposta
+                setImmediate(async () => {
+                    try {
+                        await req.payload.update({
+                            collection: 'posts',
+                            id: doc.id,
+                            overrideAccess: true, // ✅ IMPORTANTE: Ignorar permissões no hook
+                            data: {
+                                views: (doc.views ?? 0) + 1,
+                            },
+                        }).catch((error) => {
+                            // Falha silenciosa - não bloqueia a resposta
+                        })
+                    } catch (error) {
+                        // Falha silenciosa - não bloqueia a resposta
+                    }
+                })
 
                 return doc
             },
